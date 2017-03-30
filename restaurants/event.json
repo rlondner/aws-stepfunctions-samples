@@ -1,0 +1,9 @@
+{
+    "startsWith": "M",
+    "cuisine": "Italian",
+    "zipcode": "10036",
+    "phoneTo": "+15555555555",
+    "firstnameTo": "Raphael",
+    "emailTo": "raphael@example.com",
+    "subject": "List of restaurants for {{firstnameTo}}"
+}

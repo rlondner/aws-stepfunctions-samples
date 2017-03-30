@@ -1,0 +1,31 @@
+{
+  "firstnameTo": "Raphael",
+  "emailTo": "raphael@example.com",
+  "subject": "List of restaurants for {{firstnameTo}}",
+  "restaurants": [
+  {
+    "address": {
+      "building": "235-237",
+      "street": "West 48 Street"
+    },
+    "borough": "Manhattan",
+    "name": "La Masseria"
+  },
+  {
+    "address": {
+      "building": "315",
+      "street": "West 48 Street"
+    },
+    "borough": "Manhattan",
+    "name": "Maria'S Mont Blanc Restaurant"
+  },
+  {
+    "address": {
+      "building": "654",
+      "street": "9 Avenue"
+    },
+    "borough": "Manhattan",
+    "name": "Cara Mia"
+  }
+] 
+}

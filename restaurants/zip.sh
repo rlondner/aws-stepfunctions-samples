@@ -1,0 +1,1 @@
+zip -r archive.zip node_modules/ index.js

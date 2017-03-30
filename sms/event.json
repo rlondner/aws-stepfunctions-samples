@@ -1,0 +1,15 @@
+{
+   "phoneTo" : "+16502710452",
+   "firstnameTo": "Raphael",
+  "emailTo": "raphael@example.com",
+  "subject": "List of restaurants for {{firstnameTo}}",
+  "restaurants": [
+  {
+    "address": {
+      "building": "235-237",
+      "street": "West 48 Street"
+    },
+    "borough": "Manhattan",
+    "name": "La Masseria"
+  }]
+}

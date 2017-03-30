@@ -1,0 +1,14 @@
+{
+  "name": "awslambda-restaurants",
+  "version": "1.0.0",
+  "description": "An AWS Lambda function that retrieves a list of restaurants from a database hosted in MongoDB Atlas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mongodb": "^2.2.24"
+  }
+}

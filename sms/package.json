@@ -1,0 +1,15 @@
+{
+  "name": "awslambda-twilio",
+  "version": "1.0.0",
+  "description": "An AWS Lambda function that sends a text message through Twilio's SMS Service",
+  "main": "sms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mustache": "^2.3.0",
+    "twilio": "^2.11.1"
+  }
+}

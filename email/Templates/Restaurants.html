@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Matching Restaurants List</title>
+</head>
+
+<body>
+	<p>
+		Here is the list of restaurants matching your request!
+	</p>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Zip</th>
+			<th>Borough/City</th>
+		</tr>
+		{{#restaurants}}
+		<tr>
+			<td>{{name}}</td>
+			<td>{{address.building}} {{address.street}}</td>
+			<td>{{address.zipcode}}</td>
+			<td>{{borough}}</td>
+		</tr>
+		{{/restaurants}}
+	</table>
+	
+</body>
+
+</html>

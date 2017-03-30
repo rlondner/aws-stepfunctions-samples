@@ -1,0 +1,45 @@
+{
+    "Comment": "A state machine showcasing the use of MongoDB Atlas to notify a user by text message or email depending on the number of returned restaurants",
+    "StartAt": "GetRestaurants",
+    "States": {
+        "GetRestaurants": {
+            "Type": "Task",
+            "Resource": "",
+            "ResultPath": "$.restaurants",
+            "Next": "CountItems"
+        },
+        "CountItems": {
+            "Type": "Task",
+            "Resource": "",
+            "InputPath": "$.restaurants",
+            "ResultPath": "$.count",
+            "Next": "NotificationMethodChoice"
+        },
+        "NotificationMethodChoice": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.count",
+                    "NumericGreaterThan": 1,
+                    "Next": "SendByEmail"
+                },
+                {
+                    "Variable": "$.count",
+                    "NumericLessThanEquals": 1,
+                    "Next": "SendBySMS"
+                }
+            ],
+            "Default": "SendByEmail"
+        },
+        "SendByEmail": {
+            "Type": "Task",
+            "Resource": "",
+            "End": true
+        },
+        "SendBySMS": {
+            "Type": "Task",
+            "Resource": "",
+            "End": true
+        }
+    }
+}

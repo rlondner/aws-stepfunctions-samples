@@ -1,0 +1,14 @@
+{
+  "name": "awslambda-email",
+  "version": "1.0.0",
+  "description": "An AWS Lambda function that sends an email through AWS SES (Simple Email Service)",
+  "main": "email.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Londner",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mustache": "^2.3.0"
+  }
+}
