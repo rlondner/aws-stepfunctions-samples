@@ -3,25 +3,18 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-let atlas_connection_uri;
+//Performance optimization Step 1: declare the database connection object outside the handler method
 let cachedDb = null;
 
-function connectToDatabase(uri) {
-    console.log('=> connecting to database');
-    if (cachedDb) {
-        console.log('=> using cached database instance');
-        return Promise.resolve(cachedDb);
-    }
-
-    return MongoClient.connect(uri)
-        .then(db => { cachedDb = db; return cachedDb; });
-}
-
+let atlas_connection_uri = null;
 
 exports.handler = (event, context, callback) => {
-    console.log(event);
+
     var uri = process.env['MONGODB_ATLAS_CLUSTER_URI'];
+
+    //Performance optimization Step 2: set context.callbackWaitsForEmptyEventLoop to false to prevent the Lambda function from waiting for all resources (such as the database connection) to be released before returning it
     context.callbackWaitsForEmptyEventLoop = false;
+
     if (atlas_connection_uri == null) {
         atlas_connection_uri = uri;
         /*
@@ -38,6 +31,19 @@ exports.handler = (event, context, callback) => {
     }
     processEvent(event, context, callback);
 };
+
+function connectToDatabase(uri) {
+
+    //Performance optimization Step 3: test that database connection exists and is valid
+    //before re-using it
+    if (cachedDb && cachedDb.serverConfig.isConnected()) {
+        console.log('=> using cached database instance');
+        return Promise.resolve(cachedDb);
+    }
+
+    return MongoClient.connect(uri)
+        .then(db => { cachedDb = db; return cachedDb; });
+}
 
 function processEvent(event, context, callback) {
     connectToDatabase(atlas_connection_uri)
