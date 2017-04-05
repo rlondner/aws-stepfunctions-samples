@@ -49,6 +49,7 @@ function processEvent(event, context, callback) {
     connectToDatabase(atlas_connection_uri)
         .then(db => queryDatabase(db, event))
         .then(result => {
+            console.log('query results: ', result);
             callback(null, result);
         })
         .catch(err => {
@@ -59,7 +60,8 @@ function processEvent(event, context, callback) {
 
 function queryDatabase(db, event) {
     var jsonContents = JSON.parse(JSON.stringify(event));
-    return db.collection('restaurants').aggregate([{ $match: { "address.zipcode": "10036", "cuisine": "Italian", "name": new RegExp('M') } },
+    console.log('query parameters: ', jsonContents);
+    return db.collection('restaurants').aggregate([{ $match: { "address.zipcode": jsonContents.zipcode, "cuisine": jsonContents.cuisine, "name": new RegExp(jsonContents.startsWith) } },
     { $project: { "_id": 0, "name": 1, "address.building": 1, "address.street": 1, "borough": 1, "address.zipcode": 1, "healthScoreAverage": { $avg: "$grades.score" }, "healthScoreWorst": { $max: "$grades.score" } } }
     ]).toArray()
         .then(docs => {
