@@ -5,5 +5,6 @@
     "phoneTo": "+15555555555",
     "firstnameTo": "Raphael",
     "emailTo": "raphael@example.com",
-    "subject": "List of restaurants for {{firstnameTo}}"
+    "subject": "List of restaurants for {{firstnameTo}}",
+    "apiGatewayIntegration": false
 }

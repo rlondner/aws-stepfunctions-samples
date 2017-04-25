@@ -9,16 +9,19 @@ var s3 = new aws.S3();
 exports.handler = function (event, context, callback) {
 
     console.log("Event: " + JSON.stringify(event));
+    var aws_region = process.env['AWS_DEFAULT_REGION'];
+    var s3_bucket = process.env['S3_BUCKET'];
+    var from_address = process.env['FROM_ADDRESS'];
 
-    //aws.config.update({ region: 'us-west-2' });
+    aws.config.update({ region: aws_region });
 
     var config = require('./config.js');
 
-    console.log('Loading template from ' + config.templateKey + ' in ' + config.templateBucket);
+    console.log('Loading template from ' + config.templateKey + ' in ' + s3_bucket);
 
     // Read the template file from S3
     s3.getObject({
-        Bucket: config.templateBucket,
+        Bucket: s3_bucket,
         Key: config.templateKey
     }, function (err, data) {
         if (err) {
@@ -45,9 +48,9 @@ exports.handler = function (event, context, callback) {
                         Charset: 'UTF-8'
                     }
                 },
-                Source: config.fromAddress,
+                Source: from_address,
                 ReplyToAddresses: [
-                    config.fromAddress
+                    from_address
                 ]
             };
 
