@@ -60,23 +60,25 @@ function processEvent(event, context, callback) {
 
 function queryDatabase(db, event) {   
     var jsonContents = JSON.parse(JSON.stringify(event));
-    var apiGatewayIntegration = false;
-    if (event.apiGatewayIntegration !== null && event.apiGatewayIntegration !== undefined) {
-        var apiGatewayIntegration = event.apiGatewayIntegration;
-        console.log('api Gateway: ', apiGatewayIntegration);
-    } 
-
+    
     //handling API Gateway input where the event is embedded into the 'body' element
     if (event.body !== null && event.body !== undefined) {
         jsonContents = JSON.parse(event.body);
-    }   
+    }      
+    
+    var apiGatewayIntegration = false;   
+    if (jsonContents.apiGatewayIntegration !== null && jsonContents.apiGatewayIntegration !== undefined) {
+        apiGatewayIntegration = jsonContents.apiGatewayIntegration;
+        console.log('api Gateway: ', apiGatewayIntegration);
+    } 
+
     console.log('query parameters: ', jsonContents);
     return db.collection('restaurants').aggregate([{ $match: { "address.zipcode": jsonContents.zipcode, "cuisine": jsonContents.cuisine, "name": new RegExp(jsonContents.startsWith) } },
     { $project: { "_id": 0, "name": 1, "address.building": 1, "address.street": 1, "borough": 1, "address.zipcode": 1, "healthScoreAverage": { $avg: "$grades.score" }, "healthScoreWorst": { $max: "$grades.score" } } }
     ]).toArray()
         .then(docs => {
             if(apiGatewayIntegration) {
-            return { statusCode: 200, body: JSON.stringify({"message": docs}) };
+            return { statusCode: 200, body: JSON.stringify(docs) };
         }
         else {
             return docs;

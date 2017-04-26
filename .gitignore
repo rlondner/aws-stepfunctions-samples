@@ -8,3 +8,5 @@ statemachine_local.json
 sms/_index.js
 
 email/ll_local.sh
+
+API_Gateway_TestInput.txt
