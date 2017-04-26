@@ -52,7 +52,6 @@ Here are the specific configuration tasks you must make for each Lambda function
 
 - **GetRestaurants** function:
     - Add a ``MONGODB_ATLAS_CLUSTER_URI`` environment variable with the value of your MongoDB Atlas connection string (see [this blog post](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas) for further details).
-    - If you want to test the function through an AWS API Gateway trigger, add a ``API_GATEWAY`` environment variable with a `true` value.
     - Copy/paste the contents of the ``event.json`` file in the Lambda *Input test event* window. 
 - **CountItems** function:
 	- Create a blank Lambda function and copy/paste the content of the ``index.js`` file into the AWS Lambda code editor.
@@ -67,7 +66,7 @@ Here are the specific configuration tasks you must make for each Lambda function
 	- Create an S3 bucket and in that S3 bucket, create a *Templates* folder. Upload the __*Templates/Restaurants.html*__ file into this *Templates* bucket.
     - Add an ``S3_BUCKET`` environment variable with the value of the S3 bucket you created in the previous step.
     - Add an ``FROM_ADDRESS`` environment variable with the value of SES-verified email address you want to use as your sender email address.
-	- Once you have zipped and uploaded the Lambda function again, use the ``event.json`` file as your test event input and at least update the ``emailTo`` attribute with an SES-verified email address (and potentially the ``firstnameTo`` attribute too).
+	- Copy/paste the ``event.json`` file as your test event input and at least update the ``emailTo`` attribute with an SES-verified email address (and potentially the ``firstnameTo`` attribute too).
 	- Make sure the IAM role you use to run your Lambda function includes the following permissions (created as an inline or managed policy):
 
 	```{
@@ -92,4 +91,4 @@ Here are the specific configuration tasks you must make for each Lambda function
 
 ### AWS Step Function
 
-Once you have successfully created and tested the 3 Lambda functions above, head over (or go back) to our [AWS Step Functions blog post](https://mongodb.com/blog) for the last mile!
+Once you have successfully created and tested the 4 Lambda functions above, head over (or go back) to our [AWS Step Functions blog post](https://mongodb.com/blog) for the last mile!
