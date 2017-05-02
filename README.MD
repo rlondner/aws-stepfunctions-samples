@@ -52,21 +52,21 @@ Here are the specific configuration tasks you must make for each Lambda function
 
 - **GetRestaurants** function:
     - Add a ``MONGODB_ATLAS_CLUSTER_URI`` environment variable with the value of your MongoDB Atlas connection string (see [this blog post](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas) for further details).
-    - Copy/paste the contents of the ``event.json`` file in the Lambda *Input test event* window. 
+    - Copy/paste the contents of the [``event.json``](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/restaurants/event.json) file in the Lambda *Input test event* window. 
 - **CountItems** function:
-	- Create a blank Lambda function and copy/paste the content of the ``index.js`` file into the AWS Lambda code editor.
-	- Copy/paste the contents of the ``event.json`` file in the Lambda *Input test event* window.
+	- Create a blank Lambda function and copy/paste the content of the [``index.js``](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/countitems/index.js) file into the AWS Lambda code editor.
+	- Copy/paste the contents of the [``event.json``](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/countitems/index.js) file in the Lambda *Input test event* window.
 - **SendBySMS** function:
 	- Add a ``TWILIO_ACCOUNT_SID`` environment variable with the value of your Twilio account ID.
 	- Add a ``TWILIO_AUTH_TOKEN`` environment variable with the value of your Twilio Auth Token.
 	- Add a ``TWILIO_PHONE_NUMBER`` environment variable with the value of your Twilio Phone Number.
-	- Copy/paste the contents of the ``event.json`` file in the Lambda *Input test event* window.
+	- Copy/paste the contents of the [``event.json``](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/sms/event.json) file in the Lambda *Input test event* window.
 - **SendByEmail** function:
 	- You must first set up [AWS Simple Email Service](https://aws.amazon.com/ses/) in order for it to accept your sender email address as well as the recipient adress(es) you are planning to use.
-	- Create an S3 bucket and in that S3 bucket, create a *Templates* folder. Upload the __*Templates/Restaurants.html*__ file into this *Templates* bucket.
+	- Create an S3 bucket and in that S3 bucket, create a *Templates* folder. Upload the [__*Templates/Restaurants.html*__](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/email/Templates/Restaurants.html) file into this *Templates* bucket.
     - Add an ``S3_BUCKET`` environment variable with the value of the S3 bucket you created in the previous step.
     - Add an ``FROM_ADDRESS`` environment variable with the value of SES-verified email address you want to use as your sender email address.
-	- Copy/paste the ``event.json`` file as your test event input and at least update the ``emailTo`` attribute with an SES-verified email address (and potentially the ``firstnameTo`` attribute too).
+	- Copy/paste the [``event.json``](https://github.com/rlondner/aws-stepfunctions-samples/blob/master/email/event.json) file as your test event input and at least update the ``emailTo`` attribute with an SES-verified email address (and potentially the ``firstnameTo`` attribute too).
 	- Make sure the IAM role you use to run your Lambda function includes the following permissions (created as an inline or managed policy):
 
 	```{
