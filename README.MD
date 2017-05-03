@@ -11,6 +11,7 @@ In order to use this repository, you will need:
 1. A local computer with [Node.js](https://nodejs.org)
 2. An [Amazon Web Services](https://aws.amazon.com/) account
 3. A [MongoDB Atlas](https://www.mongodb.com/atlas?jmp=adref) cluster (see this [video](https://youtu.be/_d8CBOtadRA) to get started with a free M0 cluster)
+4. A [Twilio](https://www.twilio.com/) account. A trial account is fine, but you will need to add the phone numbers you'd like to send text messages to on the [Verified Called IDs page](https://www.twilio.com/console/phone-numbers/verified).
 
 __Note__: this repository was built and tested on Mac OS X Sierra and Node.js 6.9.4
 
