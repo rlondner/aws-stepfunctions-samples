@@ -12,6 +12,13 @@ exports.handler = (event, context, callback) => {
 
     var uri = process.env['MONGODB_ATLAS_CLUSTER_URI'];
 
+    console.log('remaining time =', context.getRemainingTimeInMillis());
+    console.log('functionName =', context.functionName);
+    console.log('AWSrequestID =', context.awsRequestId);
+    console.log('logGroupName =', context.logGroupName);
+    console.log('logStreamName =', context.logStreamName);
+    console.log('clientContext =', context.clientContext);
+
     //Performance optimization Step 2: set context.callbackWaitsForEmptyEventLoop to false to prevent the Lambda function from waiting for all resources (such as the database connection) to be released before returning it
     context.callbackWaitsForEmptyEventLoop = false;
 
@@ -63,26 +70,14 @@ function queryDatabase(db, event) {
     
     //handling API Gateway input where the event is embedded into the 'body' element
     if (event.body !== null && event.body !== undefined) {
+        console.log('retrieving payload from event.body');
         jsonContents = JSON.parse(event.body);
-    }      
-    
-    var apiGatewayIntegration = false;   
-    if (jsonContents.apiGatewayIntegration !== null && jsonContents.apiGatewayIntegration !== undefined) {
-        apiGatewayIntegration = jsonContents.apiGatewayIntegration;
-        console.log('api Gateway: ', apiGatewayIntegration);
-    } 
+    }
 
     console.log('query parameters: ', jsonContents);
     return db.collection('restaurants').aggregate([{ $match: { "address.zipcode": jsonContents.zipcode, "cuisine": jsonContents.cuisine, "name": new RegExp(jsonContents.startsWith) } },
     { $project: { "_id": 0, "name": 1, "address.building": 1, "address.street": 1, "borough": 1, "address.zipcode": 1, "healthScoreAverage": { $avg: "$grades.score" }, "healthScoreWorst": { $max: "$grades.score" } } }
     ]).toArray()
-        .then(docs => {
-            if(apiGatewayIntegration) {
-            return { statusCode: 200, body: JSON.stringify(docs) };
-        }
-        else {
-            return docs;
-        }
-        })
-        .catch(err => { return { statusCode: 500, body: 'error' }; });
+        .then(docs => { return docs;})
+        .catch(err => { return err; });
 }
