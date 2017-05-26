@@ -12,3 +12,5 @@ email/ll_local.sh
 API_Gateway_TestInput.txt
 
 exec_sf_local.sh
+
+restaurants/claudia.json
