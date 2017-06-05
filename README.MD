@@ -92,4 +92,4 @@ Here are the specific configuration tasks you must make for each Lambda function
 
 ### AWS Step Function
 
-Once you have successfully created and tested the 4 Lambda functions above, head over (or go back) to our [AWS Step Functions blog post](https://mongodb.com/blog) for the last mile!
+Once you have successfully created and tested the 4 Lambda functions above, head over (or go back) to our [AWS Step Functions code walkthrough](http://bit.ly/mdbawssf) for the last mile!
