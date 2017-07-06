@@ -21,11 +21,11 @@ __Note__: this repository was built and tested on Mac OS X Sierra and Node.js 6.
 
 Since this Step Function relies on an existing dataset of restaurants, you must first import a sample dataset to your MongoDB Atlas cluster:
 
-1. Download [this dataset](https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json) (also used in the [MongoDB Shell Tutorial](https://docs.mongodb.com/getting-started/shell/import-data)).
-2. Edit the following command line by replacing the ``$`` parameters with your own values:
+1. Download [this dataset](https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json) (also used in the [MongoDB Shell Tutorial](https://docs.mongodb.com/getting-started/shell/import-data)). Alternatively, you can customize the [import.sh](/dataset/import.sh) script to import the [restaurants.json].(/dataset/restaurants.json) file.
+1. Edit the following command line by replacing the ``$`` parameters with your own values: 
 ``mongoimport --host $ATLAS_CLUSTER_URI --ssl -u $ATLAS_ADMIN -p $ATLAS_PWD --authenticationDatabase admin --db travel --collection restaurants --drop --file primer-dataset.json``
-3. Run your customized ``mongoimport`` command above to import the dataset to your Atlas cluster.
-4. (Optional) verify with [MongoDB Compass](https://www.mongodb.com/download-center?jmp=adref#compass) that your ``restaurants`` collection was properly imported. The [MongoDB Compass with Atlas](https://www.mongodb.com/blog/post/your-mongodb-atlas-toolkit-logging-into-mongodb-atlas-with-compass?jmp=adref) blog post might help you configure Compass with MongoDB Atlas.
+1. Run your customized ``mongoimport`` command above to import the dataset to your Atlas cluster.
+1. (Optional) verify with [MongoDB Compass](https://www.mongodb.com/download-center?jmp=adref#compass) that your ``restaurants`` collection was properly imported. The [MongoDB Compass with Atlas](https://www.mongodb.com/blog/post/your-mongodb-atlas-toolkit-logging-into-mongodb-atlas-with-compass?jmp=adref) blog post might help you configure Compass with MongoDB Atlas.
 
 ### Amazon Web Services
 This repository is made of the following Lambda functions:
@@ -90,6 +90,6 @@ Here are the specific configuration tasks you must make for each Lambda function
     ]
 }
 
-### AWS Step Function
+### AWS Step Functions
 
 Once you have successfully created and tested the 4 Lambda functions above, head over (or go back) to our [AWS Step Functions code walkthrough](http://bit.ly/mdbawssf) for the last mile!
