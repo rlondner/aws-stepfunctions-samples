@@ -21,7 +21,7 @@ __Note__: this repository was built and tested on Mac OS X Sierra and Node.js 6.
 
 Since this Step Function relies on an existing dataset of restaurants, you must first import a sample dataset to your MongoDB Atlas cluster:
 
-1. Download [this dataset](https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json) (also used in the [MongoDB Shell Tutorial](https://docs.mongodb.com/getting-started/shell/import-data)). Alternatively, you can customize the [import.sh](/dataset/import.sh) script to import the [restaurants.json].(/dataset/restaurants.json) file.
+1. Download [this dataset](https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json) (also used in the [MongoDB Shell Tutorial](https://docs.mongodb.com/getting-started/shell/import-data)). Alternatively, you can customize the [import.sh](/dataset/import.sh) script to import the [restaurants.json](/dataset/restaurants.json) file.
 1. Edit the following command line by replacing the ``$`` parameters with your own values: 
 ``mongoimport --host $ATLAS_CLUSTER_URI --ssl -u $ATLAS_ADMIN -p $ATLAS_PWD --authenticationDatabase admin --db travel --collection restaurants --drop --file primer-dataset.json``
 1. Run your customized ``mongoimport`` command above to import the dataset to your Atlas cluster.
