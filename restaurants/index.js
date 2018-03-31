@@ -47,9 +47,9 @@ function connectToDatabase(uri) {
         console.log('=> using cached database instance');
         return Promise.resolve(cachedDb);
     }
-
+    const dbName = 'travel';
     return MongoClient.connect(uri)
-        .then(client => { cachedDb = client.db('travel'); return cachedDb; });
+        .then(client => { cachedDb = client.db(dbName); return cachedDb; });
 }
 
 function processEvent(event, context, callback) {
