@@ -3,8 +3,6 @@
 var aws = require('aws-sdk');
 var Mustache = require('mustache');
 
-
-
 exports.handler = function (event, context, callback) {
 
     console.log("Event: " + JSON.stringify(event));
@@ -14,7 +12,6 @@ exports.handler = function (event, context, callback) {
     }
     var s3_bucket = process.env['S3_BUCKET'];
     var from_address = process.env['FROM_ADDRESS'];
-
     
     aws.config.update({ region: aws_region });
     

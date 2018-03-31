@@ -9,7 +9,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "mongodb": "^2.2.26",
-    "claudia-api-builder": "^2.4.2"
+    "claudia-api-builder": "^2.5.1",
+    "mongodb": "^3.0.5"
   }
 }

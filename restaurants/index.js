@@ -49,7 +49,7 @@ function connectToDatabase(uri) {
     }
 
     return MongoClient.connect(uri)
-        .then(db => { cachedDb = db; return cachedDb; });
+        .then(client => { cachedDb = client.db('travel'); return cachedDb; });
 }
 
 function processEvent(event, context, callback) {
